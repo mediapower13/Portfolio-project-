@@ -6,24 +6,29 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Mohammed Nurudeen Bolarinwa - Software Developer",
+  title: "Mohammed Nurudeen Bolarinwa - Software Developer & Web3 Developer",
   description:
-    "Portfolio of Mohammed Nurudeen Bolarinwa, a Software Developer and Computer Science student at Federal University of Ilorin. Specializing in React, Next.js, and modern web development.",
+    "Portfolio of Mohammed Nurudeen Bolarinwa, an Information Technology student at Federal University of Ilorin, Kwara State. Certified Datacom Engineer from Huawei and Web3 Developer specializing in React, Next.js, and blockchain applications.",
   keywords: [
     "Mohammed Nurudeen Bolarinwa",
     "Software Developer",
+    "Web3 Developer",
     "React Developer",
     "Next.js",
+    "Blockchain",
     "Portfolio",
     "Federal University of Ilorin",
+    "Information Technology",
+    "Huawei Certified",
+    "Datacom Engineer",
   ],
   authors: [{ name: "Mohammed Nurudeen Bolarinwa" }],
   openGraph: {
-    title: "Mohammed Nurudeen Bolarinwa - Software Developer",
-    description: "Portfolio of Mohammed Nurudeen Bolarinwa, a Software Developer and Computer Science student.",
+    title: "Mohammed Nurudeen Bolarinwa - Software Developer & Web3 Developer",
+    description: "Portfolio of Mohammed Nurudeen Bolarinwa, an Information Technology student and certified Datacom Engineer specializing in Web3 and modern web development.",
     type: "website",
   },
-    generator: 'v0.dev'
+  generator: ''
 }
 
 export default function RootLayout({
