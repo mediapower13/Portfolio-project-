@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Github, Mail, ExternalLink, Download, Menu, X, MapPin, GraduationCap, Code, Palette, Zap, Award, Eye } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -13,6 +13,93 @@ import { Badge } from "@/components/ui/badge"
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [imageError, setImageError] = useState(false)
+  const [imageLoaded, setImageLoaded] = useState(false)
+
+  // Enhanced animation on scroll effect
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible')
+          entry.target.classList.remove('card-entrance')
+          console.log('Element animated:', entry.target.className)
+        }
+      })
+    }, observerOptions)
+
+    // Multiple animation observers for different effects
+    const fadeUpObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible')
+            entry.target.classList.remove('opacity-0', 'translate-y-8')
+            console.log('Fade up animated:', entry.target.className)
+          }, index * 100) // Stagger the animations
+        }
+      })
+    }, observerOptions)
+
+    const slideInObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible')
+            entry.target.classList.remove('opacity-0', 'translate-y-12')
+            console.log('Slide in animated:', entry.target.className)
+          }, index * 150) // Stagger the animations
+        }
+      })
+    }, observerOptions)
+
+    const scaleInObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible')
+            entry.target.classList.remove('opacity-0', 'scale-90')
+            console.log('Scale in animated:', entry.target.className)
+          }, index * 100)
+        }
+      })
+    }, observerOptions)
+
+    // Wait for DOM to be ready
+    setTimeout(() => {
+      // Observe different elements with different animations
+      const cardElements = document.querySelectorAll('.card-entrance, .card-entrance-up, .card-entrance-left, .card-entrance-right')
+      const fadeUpElements = document.querySelectorAll('.fade-up-on-scroll')
+      const slideInElements = document.querySelectorAll('.slide-in-on-scroll, .slide-left-on-scroll, .slide-right-on-scroll')
+      const scaleInElements = document.querySelectorAll('.scale-in-on-scroll')
+      const staggerElements = document.querySelectorAll('.stagger-children')
+
+      console.log('Found elements:', {
+        cards: cardElements.length,
+        fadeUp: fadeUpElements.length,
+        slideIn: slideInElements.length,
+        scaleIn: scaleInElements.length,
+        stagger: staggerElements.length
+      })
+
+      cardElements.forEach(el => observer.observe(el))
+      fadeUpElements.forEach(el => fadeUpObserver.observe(el))
+      slideInElements.forEach(el => slideInObserver.observe(el))
+      scaleInElements.forEach(el => scaleInObserver.observe(el))
+      staggerElements.forEach(el => observer.observe(el))
+    }, 100)
+
+    return () => {
+      observer.disconnect()
+      fadeUpObserver.disconnect()
+      slideInObserver.disconnect()
+      scaleInObserver.disconnect()
+    }
+  }, [])
 
   const projects = [
     {
@@ -137,28 +224,28 @@ export default function Portfolio() {
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-white/20 z-50 shadow-lg">
+      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-white/20 z-50 shadow-lg animate-slide-down">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+            <div className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent animate-slide-right">
               Mohammed Nurudeen
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-8">
-              <a href="#about" className="text-gray-600 hover:text-purple-600 transition-colors font-medium">
+            <div className="hidden md:flex space-x-8 animate-slide-left stagger-1">
+              <a href="#about" className="text-gray-600 hover:text-purple-600 transition-colors font-medium hover-smooth hover-bounce">
                 About
               </a>
-              <a href="#projects" className="text-gray-600 hover:text-purple-600 transition-colors font-medium">
+              <a href="#projects" className="text-gray-600 hover:text-purple-600 transition-colors font-medium hover-smooth hover-bounce stagger-1">
                 Projects
               </a>
-              <a href="#skills" className="text-gray-600 hover:text-purple-600 transition-colors font-medium">
+              <a href="#skills" className="text-gray-600 hover:text-purple-600 transition-colors font-medium hover-smooth hover-bounce stagger-2">
                 Skills
               </a>
-              <a href="#certificates" className="text-gray-600 hover:text-purple-600 transition-colors font-medium">
+              <a href="#certificates" className="text-gray-600 hover:text-purple-600 transition-colors font-medium hover-smooth hover-bounce stagger-3">
                 Certificates
               </a>
-              <a href="#contact" className="text-gray-600 hover:text-purple-600 transition-colors font-medium">
+              <a href="#contact" className="text-gray-600 hover:text-purple-600 transition-colors font-medium hover-smooth hover-bounce stagger-4">
                 Contact
               </a>
             </div>
@@ -218,40 +305,40 @@ export default function Portfolio() {
       <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center py-12 lg:py-20">
-            <div className="mb-6 lg:mb-8">
-              <div className="inline-block p-3 lg:p-4 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mb-4 lg:mb-6">
-                <Code className="h-6 w-6 lg:h-8 lg:w-8 text-white" />
+            <div className="mb-6 lg:mb-8 animate-zoom-in">
+              <div className="inline-block p-3 lg:p-4 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mb-4 lg:mb-6 animate-pulse-soft hover-shine">
+                <Code className="h-6 w-6 lg:h-8 lg:w-8 text-white animate-bounce" />
               </div>
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 lg:mb-6 px-4">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 lg:mb-6 px-4 animate-slide-up stagger-1">
               Hi, I'm{" "}
-              <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent text-focus-in">
                 Mohammed Nurudeen Bolarinwa
               </span>
             </h1>
-            <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-3 lg:mb-4 max-w-3xl mx-auto font-medium px-4">
+            <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-3 lg:mb-4 max-w-3xl mx-auto font-medium px-4 animate-slide-up stagger-2">
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Software Developer, Web3 Developer & Certified Datacom Engineer
               </span>
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 lg:gap-6 mb-6 lg:mb-8 text-gray-600 px-4">
-              <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-3 lg:px-4 py-2 shadow-lg text-sm lg:text-base">
-                <GraduationCap className="h-4 w-4 lg:h-5 lg:w-5 text-blue-600" />
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 lg:gap-6 mb-6 lg:mb-8 text-gray-600 px-4 animate-slide-up stagger-3">
+              <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-3 lg:px-4 py-2 shadow-lg text-sm lg:text-base hover-lift hover-shine card-entrance">
+                <GraduationCap className="h-4 w-4 lg:h-5 lg:w-5 text-blue-600 animate-heartbeat" />
                 <span className="font-medium">Federal University of Ilorin</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-3 lg:px-4 py-2 shadow-lg text-sm lg:text-base">
-                <MapPin className="h-4 w-4 lg:h-5 lg:w-5 text-green-600" />
+              <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-3 lg:px-4 py-2 shadow-lg text-sm lg:text-base hover-lift hover-shine card-entrance">
+                <MapPin className="h-4 w-4 lg:h-5 lg:w-5 text-green-600 animate-pulse" />
                 <span className="font-medium">Kwara State, Nigeria</span>
               </div>
             </div>
-            <p className="text-base lg:text-lg text-gray-600 mb-6 lg:mb-8 max-w-2xl mx-auto px-4">
+            <p className="text-base lg:text-lg text-gray-600 mb-6 lg:mb-8 max-w-2xl mx-auto px-4 animate-slide-up stagger-4">
               Passionate Information Technology student and certified Datacom Engineer creating innovative Web3 solutions 
               and building user-friendly applications that solve real-world problems with beautiful, modern designs.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center items-center mb-6 lg:mb-8 px-4">
+            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center items-center mb-6 lg:mb-8 px-4 animate-slide-up stagger-5">
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg text-sm lg:text-base"
+                className="w-full sm:w-auto btn-professional hover-smooth hover-tada shadow-lg text-sm lg:text-base"
                 asChild
               >
                 <a href="#contact">
@@ -262,17 +349,17 @@ export default function Portfolio() {
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto border-2 border-purple-200 hover:bg-purple-50 shadow-lg text-sm lg:text-base"
+                className="w-full sm:w-auto border-2 border-purple-200 hover:bg-purple-50 shadow-lg text-sm lg:text-base hover-smooth hover-bounce"
               >
                 <Download className="mr-2 h-4 w-4" />
                 Download Resume
               </Button>
             </div>
-            <div className="flex justify-center space-x-4 lg:space-x-6">
+            <div className="flex justify-center space-x-4 lg:space-x-6 animate-slide-up stagger-6">
               <Button
                 variant="ghost"
                 size="icon"
-                className="bg-white/60 backdrop-blur-sm hover:bg-white/80 shadow-lg"
+                className="bg-white/60 backdrop-blur-sm hover:bg-white/80 shadow-lg hover-smooth hover-rotate"
                 asChild
               >
                 <a href="https://github.com/mediapower13" target="_blank" rel="noopener noreferrer" title="Visit my GitHub profile">
@@ -282,7 +369,7 @@ export default function Portfolio() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="bg-white/60 backdrop-blur-sm hover:bg-white/80 shadow-lg"
+                className="bg-white/60 backdrop-blur-sm hover:bg-white/80 shadow-lg hover-smooth hover-rotate"
                 asChild
               >
                 <a href="mailto:mediapowers13@gmail.com" title="Send me an email">
@@ -297,67 +384,90 @@ export default function Portfolio() {
       {/* About Section */}
       <section
         id="about"
-        className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-50 via-blue-50 to-indigo-50 relative"
+        className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-50 via-blue-50 to-indigo-50 relative slide-in-on-scroll"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-purple-100/20 to-blue-100/20"></div>
         <div className="max-w-4xl mx-auto relative">
-          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent fade-up-on-scroll">
             About Me
           </h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1">
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+            <div className="order-2 md:order-1 slide-left-on-scroll">
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed fade-up-on-scroll">
                 I'm Mohammed Nurudeen Bolarinwa, a dedicated Information Technology student at the Federal University of
                 Ilorin, Kwara State, with a passion for software development and Web3 technologies. I'm also a certified 
                 Datacom Engineer from Huawei, specializing in building modern web applications and blockchain solutions.
               </p>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed fade-up-on-scroll">
                 My journey in technology has equipped me with strong problem-solving skills and expertise in various 
                 programming languages, frameworks, and blockchain technologies. I'm passionate about creating decentralized 
                 applications and contributing to the future of web development.
               </p>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed fade-up-on-scroll">
                 When I'm not coding, I enjoy contributing to open-source projects, exploring new blockchain protocols,
                 participating in coding competitions, and sharing knowledge with fellow developers in the tech community.
               </p>
-              <div className="flex flex-wrap gap-3">
-                <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 px-4 py-2">
+              <div className="flex flex-wrap gap-3 stagger-children">
+                <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 px-4 py-2 hover-smooth hover-bounce">
                   Problem Solver
                 </Badge>
-                <Badge className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white border-0 px-4 py-2">
+                <Badge className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white border-0 px-4 py-2 hover-smooth hover-bounce">
                   Huawei Certified
                 </Badge>
-                <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white border-0 px-4 py-2">
+                <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white border-0 px-4 py-2 hover-smooth hover-bounce">
                   Web3 Developer
                 </Badge>
-                <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white border-0 px-4 py-2">
+                <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white border-0 px-4 py-2 hover-smooth hover-bounce">
                   Blockchain Enthusiast
                 </Badge>
               </div>
             </div>
-            <div className="order-1 md:order-2 flex justify-center">
-              <div className="relative">
-                <div className="w-64 h-64 bg-gradient-to-br from-purple-400 via-pink-400 to-blue-400 rounded-full flex items-center justify-center shadow-2xl">
-                  <div className="w-56 h-56 bg-white rounded-full flex items-center justify-center overflow-hidden">
+            <div className="order-1 md:order-2 flex justify-center mb-8 md:mb-0 slide-right-on-scroll">
+              <div className="relative group scale-in-on-scroll">
+                {/* Outer gradient ring */}
+                <div className="w-72 h-72 sm:w-80 sm:h-80 bg-gradient-to-br from-purple-400 via-pink-400 to-blue-400 rounded-full flex items-center justify-center shadow-2xl p-2 group-hover:scale-105 transition-transform duration-500 hover-shine">
+                  {/* Inner white container */}
+                  <div className="w-full h-full bg-white rounded-full flex items-center justify-center overflow-hidden shadow-inner">
                     {!imageError ? (
-                      <img 
-                        src="/images/mediapower.jpg" 
-                        alt="Mohammed Nurudeen Bolarinwa - Mediapower" 
-                        className="w-full h-full object-cover rounded-full"
-                        onError={() => setImageError(true)}
-                      />
+                      <div className="w-full h-full relative">
+                        <img 
+                          src="/images/mediapower.jpg" 
+                          alt="Mohammed Nurudeen Bolarinwa - Mediapower" 
+                          className="w-full h-full object-cover object-center rounded-full transition-transform duration-300 group-hover:scale-110"
+                          onError={() => setImageError(true)}
+                          onLoad={() => setImageLoaded(true)}
+                        />
+                        {/* Loading placeholder */}
+                        {!imageLoaded && (
+                          <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+                          </div>
+                        )}
+                      </div>
                     ) : (
-                      <div className="text-center">
-                        <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
+                      <div className="text-center p-8">
+                        <div className="text-6xl sm:text-7xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">
                           MN
                         </div>
-                        <div className="text-sm text-gray-600 font-medium">Mediapower</div>
+                        <div className="text-lg text-gray-600 font-medium">Mediapower</div>
+                        <div className="text-sm text-gray-500 mt-2">Portfolio</div>
                       </div>
                     )}
                   </div>
                 </div>
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-bounce"></div>
-                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-green-400 to-blue-400 rounded-full animate-pulse"></div>
+                
+                {/* Floating elements with scroll animations */}
+                <div className="absolute -top-6 -right-6 w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-bounce shadow-lg flex items-center justify-center rotate-in-on-scroll">
+                  <Code className="h-6 w-6 text-white" />
+                </div>
+                <div className="absolute -bottom-6 -left-6 w-10 h-10 bg-gradient-to-r from-green-400 to-blue-400 rounded-full animate-pulse shadow-lg flex items-center justify-center scale-in-on-scroll">
+                  <Award className="h-5 w-5 text-white" />
+                </div>
+                <div className="absolute top-8 -left-8 w-8 h-8 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full animate-float shadow-lg fade-up-on-scroll"></div>
+                <div className="absolute bottom-8 -right-8 w-6 h-6 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full animate-pulse shadow-lg fade-up-on-scroll"></div>
+                
+                {/* Subtle glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-pink-400/20 to-blue-400/20 rounded-full blur-xl -z-10 group-hover:blur-2xl transition-all duration-500"></div>
               </div>
             </div>
           </div>
@@ -365,34 +475,34 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white to-purple-50">
+      <section id="projects" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white to-purple-50 slide-in-on-scroll">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent fade-up-on-scroll">
             Featured Projects
           </h2>
-          <div className="grid md:grid-cols-2 xl:grid-cols-2 gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-2 xl:grid-cols-2 gap-6 lg:gap-8 stagger-children">
             {projects.map((project, index) => (
               <Card
                 key={index}
-                className="overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg bg-white/80 backdrop-blur-sm"
+                className={`overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg bg-white/80 backdrop-blur-sm hover-smooth hover-shine card-entrance-up`}
               >
                 <div
                   className={`aspect-video bg-gradient-to-br ${project.gradient} flex items-center justify-center relative overflow-hidden`}
                 >
                   <div className="absolute inset-0 bg-black/10"></div>
-                  <span className="text-white font-bold text-lg lg:text-xl z-10 drop-shadow-lg text-center px-4">{project.title}</span>
+                  <span className="text-white font-bold text-lg lg:text-xl z-10 drop-shadow-lg text-center px-4 animate-fade-in">{project.title}</span>
                   <div className="absolute top-4 right-4 w-3 h-3 bg-white/30 rounded-full animate-ping"></div>
                 </div>
                 <CardHeader className="p-4 lg:p-6">
                   <CardTitle className="flex items-center justify-between text-gray-800 text-lg lg:text-xl">
                     <span className="truncate pr-2">{project.title}</span>
                     <div className="flex space-x-2 flex-shrink-0">
-                      <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-purple-100" asChild>
+                      <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-purple-100 hover-smooth hover-rotate" asChild>
                         <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" title="View live project">
                           <ExternalLink className="h-4 w-4 text-purple-600" />
                         </a>
                       </Button>
-                      <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-blue-100" asChild>
+                      <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-blue-100 hover-smooth hover-rotate" asChild>
                         <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" title="View project on GitHub">
                           <Github className="h-4 w-4 text-blue-600" />
                         </a>
@@ -407,7 +517,7 @@ export default function Portfolio() {
                       <Badge
                         key={techIndex}
                         variant="outline"
-                        className="border-purple-200 text-purple-700 hover:bg-purple-50 transition-colors text-xs"
+                        className="border-purple-200 text-purple-700 hover:bg-purple-50 transition-colors text-xs hover-smooth hover-bounce"
                       >
                         {tech}
                       </Badge>
@@ -423,30 +533,30 @@ export default function Portfolio() {
       {/* Skills Section */}
       <section
         id="skills"
-        className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50"
+        className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 slide-in-on-scroll"
       >
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent fade-up-on-scroll">
             Skills & Technologies
           </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 stagger-children">
             {skills.map((skillGroup, index) => (
               <Card
                 key={index}
-                className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 shadow-lg bg-white/80 backdrop-blur-sm"
+                className={`hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 shadow-lg bg-white/80 backdrop-blur-sm hover-smooth hover-shine card-entrance-up`}
               >
                 <CardHeader className="text-center p-4 lg:p-6">
-                  <div className={`inline-flex p-3 rounded-full bg-gradient-to-r ${skillGroup.gradient} mb-4 mx-auto`}>
+                  <div className={`inline-flex p-3 rounded-full bg-gradient-to-r ${skillGroup.gradient} mb-4 mx-auto hover-smooth hover-tada animate-pulse-soft scale-in-on-scroll`}>
                     <div className="text-white">{skillGroup.icon}</div>
                   </div>
-                  <CardTitle className="text-gray-800 text-lg lg:text-xl">{skillGroup.category}</CardTitle>
+                  <CardTitle className="text-gray-800 text-lg lg:text-xl fade-up-on-scroll">{skillGroup.category}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-4 lg:p-6 pt-0">
-                  <div className="flex flex-wrap gap-2 justify-center">
+                  <div className="flex flex-wrap gap-2 justify-center stagger-children">
                     {skillGroup.items.map((skill, skillIndex) => (
                       <Badge
                         key={skillIndex}
-                        className={`bg-gradient-to-r ${skillGroup.gradient} text-white border-0 hover:scale-105 transition-transform cursor-default text-xs lg:text-sm`}
+                        className={`bg-gradient-to-r ${skillGroup.gradient} text-white border-0 hover:scale-105 transition-transform cursor-default text-xs lg:text-sm hover-smooth hover-glow`}
                       >
                         {skill}
                       </Badge>
@@ -460,16 +570,16 @@ export default function Portfolio() {
       </section>
 
       {/* Certificates Section */}
-      <section id="certificates" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white to-blue-50">
+      <section id="certificates" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white to-blue-50 slide-in-on-scroll">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent fade-up-on-scroll">
             Certifications & Achievements
           </h2>
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-8 stagger-children">
             {certificates.map((certificate, index) => (
               <Card
                 key={index}
-                className="group overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 shadow-lg bg-white/90 backdrop-blur-sm"
+                className={`group overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 shadow-lg bg-white/90 backdrop-blur-sm hover-smooth hover-shine card-entrance-${index % 2 === 0 ? 'left' : 'right'}`}
               >
                 <div className="relative">
                   <div
@@ -500,7 +610,7 @@ export default function Portfolio() {
                       <Button 
                         variant="ghost" 
                         size="icon" 
-                        className="h-8 w-8 hover:bg-purple-100 group-hover:scale-110 transition-all" 
+                        className="h-8 w-8 hover:bg-purple-100 group-hover:scale-110 transition-all hover-glow" 
                         asChild
                       >
                         <a href={certificate.verificationUrl} target="_blank" rel="noopener noreferrer" title="View certificate">
@@ -510,7 +620,7 @@ export default function Portfolio() {
                       <Button 
                         variant="ghost" 
                         size="icon" 
-                        className="h-8 w-8 hover:bg-blue-100 group-hover:scale-110 transition-all" 
+                        className="h-8 w-8 hover:bg-blue-100 group-hover:scale-110 transition-all hover-glow" 
                         asChild
                       >
                         <a href={certificate.image} target="_blank" rel="noopener noreferrer" title="Download certificate">
@@ -548,32 +658,32 @@ export default function Portfolio() {
 
           {/* Achievement Stats */}
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center group">
-              <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-lg">
+            <div className="text-center group animate-fade-in-up animation-delay-300">
+              <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-lg hover-glow animate-pulse-soft">
                 <Award className="h-8 w-8 text-white" />
               </div>
               <div className="text-2xl font-bold text-gray-800">{certificates.length}</div>
               <div className="text-sm text-gray-600 font-medium">Certificates</div>
             </div>
             
-            <div className="text-center group">
-              <div className="bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-lg">
+            <div className="text-center group animate-fade-in-up animation-delay-400">
+              <div className="bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-lg hover-glow animate-pulse-soft animation-delay-200">
                 <Code className="h-8 w-8 text-white" />
               </div>
               <div className="text-2xl font-bold text-gray-800">15+</div>
               <div className="text-sm text-gray-600 font-medium">Skills Acquired</div>
             </div>
             
-            <div className="text-center group">
-              <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-lg">
+            <div className="text-center group animate-fade-in-up animation-delay-500">
+              <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-lg hover-glow animate-pulse-soft animation-delay-400">
                 <GraduationCap className="h-8 w-8 text-white" />
               </div>
               <div className="text-2xl font-bold text-gray-800">20+</div>
               <div className="text-sm text-gray-600 font-medium">Hours Learning</div>
             </div>
             
-            <div className="text-center group">
-              <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-lg">
+            <div className="text-center group animate-fade-in-up animation-delay-600">
+              <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-lg hover-glow animate-pulse-soft animation-delay-600">
                 <Zap className="h-8 w-8 text-white" />
               </div>
               <div className="text-2xl font-bold text-gray-800">1</div>
@@ -584,47 +694,47 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-blue-50">
+      <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-blue-50 slide-in-on-scroll">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent fade-up-on-scroll">
             Get In Touch
           </h2>
-          <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
-            <CardHeader className="bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-t-lg">
-              <CardTitle className="text-white">Let's work together</CardTitle>
-              <CardDescription className="text-purple-100">
+          <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm scale-in-on-scroll hover-smooth">
+            <CardHeader className="bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-t-lg slide-down-on-scroll">
+              <CardTitle className="text-white fade-up-on-scroll">Let's work together</CardTitle>
+              <CardDescription className="text-purple-100 fade-up-on-scroll">
                 I'm always interested in hearing about new opportunities, interesting projects, and collaborations. Feel
                 free to reach out if you'd like to discuss potential work or just want to connect!
               </CardDescription>
             </CardHeader>
-            <CardContent className="p-6">
+            <CardContent className="p-6 stagger-children">
               <form onSubmit={handleContactSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <Input placeholder="Your Name" required className="border-purple-200 focus:border-purple-500" />
+                    <Input placeholder="Your Name" required className="border-purple-200 focus:border-purple-500 hover-smooth" />
                   </div>
                   <div>
                     <Input
                       type="email"
                       placeholder="Your Email"
                       required
-                      className="border-purple-200 focus:border-purple-500"
+                      className="border-purple-200 focus:border-purple-500 hover-smooth"
                     />
                   </div>
                 </div>
                 <div>
-                  <Input placeholder="Subject" required className="border-purple-200 focus:border-purple-500" />
+                  <Input placeholder="Subject" required className="border-purple-200 focus:border-purple-500 hover-smooth" />
                 </div>
                 <div>
                   <Textarea
                     placeholder="Your Message"
-                    className="min-h-[120px] border-purple-200 focus:border-purple-500"
+                    className="min-h-[120px] border-purple-200 focus:border-purple-500 hover-smooth"
                     required
                   />
                 </div>
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg"
+                  className="w-full btn-professional hover-smooth hover-bounce shadow-lg"
                 >
                   Send Message
                 </Button>

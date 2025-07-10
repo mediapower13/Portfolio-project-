@@ -38,7 +38,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} overflow-x-hidden transition-all duration-300 ease-in-out`}>
+        <div className="min-h-screen animate-fade-in-up">
+          <div className="transition-all duration-500 ease-out">
+            {children}
+          </div>
+        </div>
+      </body>
     </html>
   )
 }
