@@ -248,6 +248,12 @@ export default function Portfolio() {
               <a href="#contact" className="text-gray-600 hover:text-purple-600 transition-colors font-medium hover-smooth hover-bounce stagger-4">
                 Contact
               </a>
+              <button 
+                onClick={() => window.open('/Mohammed_Nurudeen_Bolarinwa_Resume.pdf', '_blank')}
+                className="text-purple-600 hover:text-purple-800 transition-colors font-medium hover-smooth hover-bounce stagger-5 border border-purple-200 px-3 py-1 rounded-md hover:bg-purple-50"
+              >
+                Resume
+              </button>
             </div>
 
             {/* Mobile menu button */}
@@ -350,6 +356,7 @@ export default function Portfolio() {
                 variant="outline"
                 size="lg"
                 className="w-full sm:w-auto border-2 border-purple-200 hover:bg-purple-50 shadow-lg text-sm lg:text-base hover-smooth hover-bounce"
+                onClick={() => window.open('/Mohammed_Nurudeen_Bolarinwa_Resume.pdf', '_blank')}
               >
                 <Download className="mr-2 h-4 w-4" />
                 Download Resume
@@ -431,8 +438,8 @@ export default function Portfolio() {
                     {!imageError ? (
                       <div className="w-full h-full relative">
                         <img 
-                          src="/images/mediapower.jpg" 
-                          alt="Mohammed Nurudeen Bolarinwa - Mediapower" 
+                          src="/profile-image.jpg" 
+                          alt="Mohammed Nurudeen Bolarinwa - Profile" 
                           className="w-full h-full object-cover object-center rounded-full transition-transform duration-300 group-hover:scale-110"
                           onError={() => setImageError(true)}
                           onLoad={() => setImageLoaded(true)}
@@ -446,11 +453,11 @@ export default function Portfolio() {
                       </div>
                     ) : (
                       <div className="text-center p-8">
-                        <div className="text-6xl sm:text-7xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">
-                          MN
+                        <div className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">
+                          Mohammed Nurudeen
                         </div>
-                        <div className="text-lg text-gray-600 font-medium">Mediapower</div>
-                        <div className="text-sm text-gray-500 mt-2">Portfolio</div>
+                        <div className="text-lg text-gray-600 font-medium">Software Developer</div>
+                        <div className="text-sm text-gray-500 mt-2">Web3 & Blockchain</div>
                       </div>
                     )}
                   </div>
