@@ -301,6 +301,15 @@ export default function Portfolio() {
                 >
                   Contact
                 </a>
+                <button
+                  onClick={() => {
+                    window.open('/Mohammed_Nurudeen_Bolarinwa_Resume.pdf', '_blank');
+                    setIsMenuOpen(false);
+                  }}
+                  className="text-left text-purple-600 hover:text-purple-800 transition-colors font-medium border border-purple-200 px-3 py-2 rounded-md hover:bg-purple-50"
+                >
+                  Resume
+                </button>
               </div>
             </div>
           )}
@@ -438,7 +447,7 @@ export default function Portfolio() {
                     {!imageError ? (
                       <div className="w-full h-full relative">
                         <img 
-                          src="/profile-image.jpg" 
+                          src="/my passport.JPG" 
                           alt="Mohammed Nurudeen Bolarinwa - Profile" 
                           className="w-full h-full object-cover object-center rounded-full transition-transform duration-300 group-hover:scale-110"
                           onError={() => setImageError(true)}
