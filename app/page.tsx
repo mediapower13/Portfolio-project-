@@ -13,7 +13,6 @@ import { Badge } from "@/components/ui/badge"
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [imageError, setImageError] = useState(false)
-  const [imageLoaded, setImageLoaded] = useState(false)
 
   // Enhanced animation on scroll effect
   useEffect(() => {
@@ -249,7 +248,7 @@ export default function Portfolio() {
                 Contact
               </a>
               <button 
-                onClick={() => window.open('/Mohammed_Nurudeen_Bolarinwa_Resume.pdf', '_blank')}
+                onClick={() => window.open('/My Resume Cv.pdf', '_blank')}
                 className="text-purple-600 hover:text-purple-800 transition-colors font-medium hover-smooth hover-bounce stagger-5 border border-purple-200 px-3 py-1 rounded-md hover:bg-purple-50"
               >
                 Resume
@@ -303,7 +302,7 @@ export default function Portfolio() {
                 </a>
                 <button
                   onClick={() => {
-                    window.open('/Mohammed_Nurudeen_Bolarinwa_Resume.pdf', '_blank');
+                    window.open('/My Resume Cv.pdf', '_blank');
                     setIsMenuOpen(false);
                   }}
                   className="text-left text-purple-600 hover:text-purple-800 transition-colors font-medium border border-purple-200 px-3 py-2 rounded-md hover:bg-purple-50"
@@ -365,7 +364,7 @@ export default function Portfolio() {
                 variant="outline"
                 size="lg"
                 className="w-full sm:w-auto border-2 border-purple-200 hover:bg-purple-50 shadow-lg text-sm lg:text-base hover-smooth hover-bounce"
-                onClick={() => window.open('/Mohammed_Nurudeen_Bolarinwa_Resume.pdf', '_blank')}
+                onClick={() => window.open('/My Resume Cv.pdf', '_blank')}
               >
                 <Download className="mr-2 h-4 w-4" />
                 Download Resume
@@ -445,21 +444,12 @@ export default function Portfolio() {
                   {/* Inner white container */}
                   <div className="w-full h-full bg-white rounded-full flex items-center justify-center overflow-hidden shadow-inner">
                     {!imageError ? (
-                      <div className="w-full h-full relative">
-                        <img 
-                          src="/my passport.JPG" 
-                          alt="Mohammed Nurudeen Bolarinwa - Profile" 
-                          className="w-full h-full object-cover object-center rounded-full transition-transform duration-300 group-hover:scale-110"
-                          onError={() => setImageError(true)}
-                          onLoad={() => setImageLoaded(true)}
-                        />
-                        {/* Loading placeholder */}
-                        {!imageLoaded && (
-                          <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
-                          </div>
-                        )}
-                      </div>
+                      <img 
+                        src="/profile-photo.jpg" 
+                        alt="Mohammed Nurudeen Bolarinwa - Profile" 
+                        className="w-full h-full object-cover object-center rounded-full transition-transform duration-300 group-hover:scale-110"
+                        onError={() => setImageError(true)}
+                      />
                     ) : (
                       <div className="text-center p-8">
                         <div className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">
