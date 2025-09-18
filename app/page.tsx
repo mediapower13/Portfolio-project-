@@ -702,98 +702,322 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-blue-50 slide-in-on-scroll">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent fade-up-on-scroll">
-            Get In Touch
-          </h2>
-          <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm scale-in-on-scroll hover-smooth">
-            <CardHeader className="bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-t-lg slide-down-on-scroll">
-              <CardTitle className="text-white fade-up-on-scroll">Let's work together</CardTitle>
-              <CardDescription className="text-purple-100 fade-up-on-scroll">
-                I'm always interested in hearing about new opportunities, interesting projects, and collaborations. Feel
-                free to reach out if you'd like to discuss potential work or just want to connect!
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="p-6 stagger-children">
-              <form onSubmit={handleContactSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <Input placeholder="Your Name" required className="border-purple-200 focus:border-purple-500 hover-smooth" />
-                  </div>
-                  <div>
-                    <Input
-                      type="email"
-                      placeholder="Your Email"
-                      required
-                      className="border-purple-200 focus:border-purple-500 hover-smooth"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <Input placeholder="Subject" required className="border-purple-200 focus:border-purple-500 hover-smooth" />
-                </div>
-                <div>
-                  <Textarea
-                    placeholder="Your Message"
-                    className="min-h-[120px] border-purple-200 focus:border-purple-500 hover-smooth"
-                    required
-                  />
-                </div>
-                <Button
-                  type="submit"
-                  className="w-full btn-professional hover-smooth hover-bounce shadow-lg"
-                >
-                  Send Message
-                </Button>
-              </form>
+      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 slide-in-on-scroll">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent fade-up-on-scroll">
+              Get In Touch
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto fade-up-on-scroll">
+              Ready to bring your ideas to life? Let's collaborate and create something amazing together.
+            </p>
+          </div>
 
-              <div className="mt-8 pt-6 border-t border-purple-100">
-                <div className="text-center">
-                  <p className="text-gray-600 mb-4 font-medium">Or reach me directly:</p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button variant="outline" className="border-purple-200 hover:bg-purple-50 text-purple-700" asChild>
-                      <a href="mailto:mediapowers13@gmail.com">
-                        <Mail className="mr-2 h-4 w-4" />
-                        mediapowers13@gmail.com
-                      </a>
+          <div className="grid lg:grid-cols-3 gap-8 mb-12">
+            {/* Contact Info Cards */}
+            <div className="lg:col-span-1 space-y-6">
+              <Card className="border-0 shadow-lg bg-white/90 backdrop-blur-sm hover:shadow-xl transition-all duration-300 hover-smooth">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg flex items-center justify-center mr-4">
+                      <Mail className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-800">Email Me</h3>
+                      <p className="text-sm text-gray-600">Quick response guaranteed</p>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <a href="mailto:mediapowers13@gmail.com" className="block text-purple-600 hover:text-purple-800 transition-colors">
+                      mediapowers13@gmail.com
+                    </a>
+                    <a href="mailto:nurudeenbolaman@gmail.com" className="block text-purple-600 hover:text-purple-800 transition-colors">
+                      nurudeenbolaman@gmail.com
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 shadow-lg bg-white/90 backdrop-blur-sm hover:shadow-xl transition-all duration-300 hover-smooth">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-lg flex items-center justify-center mr-4">
+                      <MapPin className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-800">Location</h3>
+                      <p className="text-sm text-gray-600">Based in Nigeria</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-700">Lagos State, Nigeria</p>
+                  <p className="text-sm text-gray-600 mt-1">Available for remote work worldwide</p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 shadow-lg bg-white/90 backdrop-blur-sm hover:shadow-xl transition-all duration-300 hover-smooth">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center mr-4">
+                      <Github className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-800">GitHub</h3>
+                      <p className="text-sm text-gray-600">Check out my projects</p>
+                    </div>
+                  </div>
+                  <a 
+                    href="https://github.com/mediapower13" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 transition-colors"
+                  >
+                    github.com/mediapower13
+                  </a>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Contact Form */}
+            <div className="lg:col-span-2">
+              <Card className="border-0 shadow-2xl bg-white/90 backdrop-blur-sm scale-in-on-scroll hover-smooth">
+                <CardHeader className="bg-gradient-to-r from-purple-500 via-blue-500 to-indigo-500 text-white rounded-t-lg slide-down-on-scroll">
+                  <CardTitle className="text-xl font-bold text-white fade-up-on-scroll">Let's Start a Conversation</CardTitle>
+                  <CardDescription className="text-purple-100 fade-up-on-scroll">
+                    Whether you have a project in mind, need technical consultation, or want to discuss opportunities, 
+                    I'm here to help. Fill out the form below and I'll get back to you within 24 hours.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="p-8 stagger-children">
+                  <form onSubmit={handleContactSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label htmlFor="name" className="text-sm font-medium text-gray-700">Full Name *</label>
+                        <Input 
+                          id="name"
+                          placeholder="Enter your full name" 
+                          required 
+                          className="border-purple-200 focus:border-purple-500 focus:ring-purple-200 hover-smooth transition-all" 
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="email" className="text-sm font-medium text-gray-700">Email Address *</label>
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="your.email@example.com"
+                          required
+                          className="border-purple-200 focus:border-purple-500 focus:ring-purple-200 hover-smooth transition-all"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label htmlFor="subject" className="text-sm font-medium text-gray-700">Subject *</label>
+                        <Input 
+                          id="subject"
+                          placeholder="What's this about?" 
+                          required 
+                          className="border-purple-200 focus:border-purple-500 focus:ring-purple-200 hover-smooth transition-all" 
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="company" className="text-sm font-medium text-gray-700">Company/Organization</label>
+                        <Input 
+                          id="company"
+                          placeholder="Your company (optional)" 
+                          className="border-purple-200 focus:border-purple-500 focus:ring-purple-200 hover-smooth transition-all" 
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="message" className="text-sm font-medium text-gray-700">Message *</label>
+                      <Textarea
+                        id="message"
+                        placeholder="Tell me about your project, ideas, or how I can help you..."
+                        className="min-h-[140px] border-purple-200 focus:border-purple-500 focus:ring-purple-200 hover-smooth transition-all resize-none"
+                        required
+                      />
+                    </div>
+
+                    <div className="flex items-center space-x-2">
+                      <input type="checkbox" id="updates" className="rounded border-purple-300 text-purple-600 focus:ring-purple-200" />
+                      <label htmlFor="updates" className="text-sm text-gray-600">
+                        I'd like to receive updates about your latest projects and blog posts
+                      </label>
+                    </div>
+
+                    <Button
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover-smooth hover-bounce"
+                    >
+                      <Mail className="mr-2 h-5 w-5" />
+                      Send Message
                     </Button>
-                    <Button variant="outline" className="border-purple-200 hover:bg-purple-50 text-purple-700" asChild>
-                      <a href="mailto:nurudeenbolaman@gmail.com">
-                        <Mail className="mr-2 h-4 w-4" />
-                        nurudeenbolaman@gmail.com
-                      </a>
-                    </Button>
-                    <Button variant="outline" className="border-blue-200 hover:bg-blue-50 text-blue-700" asChild>
-                      <a href="https://github.com/mediapower13" target="_blank" rel="noopener noreferrer">
-                        <Github className="mr-2 h-4 w-4" />
-                        mediapower13
-                      </a>
-                    </Button>
+                  </form>
+
+                  <div className="mt-8 pt-6 border-t border-purple-100">
+                    <div className="text-center">
+                      <p className="text-gray-600 mb-4 font-medium">Prefer a direct approach?</p>
+                      <div className="flex flex-wrap gap-3 justify-center">
+                        <Button 
+                          variant="outline" 
+                          className="border-purple-200 hover:bg-purple-50 text-purple-700 hover:border-purple-300 transition-all hover-smooth" 
+                          asChild
+                        >
+                          <a href="mailto:mediapowers13@gmail.com">
+                            <Mail className="mr-2 h-4 w-4" />
+                            Primary Email
+                          </a>
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          className="border-blue-200 hover:bg-blue-50 text-blue-700 hover:border-blue-300 transition-all hover-smooth" 
+                          asChild
+                        >
+                          <a href="https://github.com/mediapower13" target="_blank" rel="noopener noreferrer">
+                            <Github className="mr-2 h-4 w-4" />
+                            View GitHub
+                          </a>
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          className="border-green-200 hover:bg-green-50 text-green-700 hover:border-green-300 transition-all hover-smooth" 
+                          asChild
+                        >
+                          <a href="/MNB Resume.pdf" target="_blank" rel="noopener noreferrer">
+                            <Download className="mr-2 h-4 w-4" />
+                            Download Resume
+                          </a>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Additional Professional Touch - Response Time Banner */}
+          <div className="text-center">
+            <Card className="border-0 shadow-lg bg-gradient-to-r from-green-50 to-blue-50 hover:shadow-xl transition-all duration-300">
+              <CardContent className="p-6">
+                <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-white font-bold">24h</span>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-800">Quick Response</p>
+                      <p className="text-sm text-gray-600">I typically respond within 24 hours</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                      <ExternalLink className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-800">Remote Ready</p>
+                      <p className="text-sm text-gray-600">Available for projects worldwide</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center mr-3">
+                      <Award className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-800">Quality Assured</p>
+                      <p className="text-sm text-gray-600">Professional & reliable service</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-gray-900 to-purple-900 py-8 px-4 sm:px-6 lg:px-8 text-white">
+      <footer className="bg-gradient-to-r from-gray-900 via-purple-900 to-indigo-900 py-12 px-4 sm:px-6 lg:px-8 text-white">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-purple-200 mb-4 md:mb-0">© 2025 Mohammed Nurudeen Bolarinwa. All rights reserved.</div>
-            <div className="flex space-x-6">
-              <Button variant="ghost" size="icon" className="hover:bg-white/10 text-white" asChild>
-                <a href="https://github.com/mediapower13" target="_blank" rel="noopener noreferrer" title="Visit my GitHub profile">
-                  <Github className="h-5 w-5" />
-                </a>
-              </Button>
-              <Button variant="ghost" size="icon" className="hover:bg-white/10 text-white" asChild>
-                <a href="mailto:mediapowers13@gmail.com" title="Send me an email">
-                  <Mail className="h-5 w-5" />
-                </a>
-              </Button>
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            {/* Brand Section */}
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                Mohammed Nurudeen
+              </h3>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                Full-Stack Developer & Web3 Enthusiast crafting innovative digital solutions 
+                with modern technologies and blockchain integration.
+              </p>
+              <div className="flex space-x-4">
+                <Button variant="ghost" size="icon" className="hover:bg-white/10 text-purple-300 hover:text-white transition-all" asChild>
+                  <a href="https://github.com/mediapower13" target="_blank" rel="noopener noreferrer" title="Visit my GitHub profile">
+                    <Github className="h-5 w-5" />
+                  </a>
+                </Button>
+                <Button variant="ghost" size="icon" className="hover:bg-white/10 text-purple-300 hover:text-white transition-all" asChild>
+                  <a href="mailto:mediapowers13@gmail.com" title="Send me an email">
+                    <Mail className="h-5 w-5" />
+                  </a>
+                </Button>
+                <Button variant="ghost" size="icon" className="hover:bg-white/10 text-purple-300 hover:text-white transition-all" asChild>
+                  <a href="/MNB Resume.pdf" target="_blank" rel="noopener noreferrer" title="Download my resume">
+                    <Download className="h-5 w-5" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-white">Quick Links</h3>
+              <div className="space-y-2">
+                <a href="#about" className="block text-gray-300 hover:text-purple-400 transition-colors text-sm">About Me</a>
+                <a href="#projects" className="block text-gray-300 hover:text-purple-400 transition-colors text-sm">Projects</a>
+                <a href="#skills" className="block text-gray-300 hover:text-purple-400 transition-colors text-sm">Skills</a>
+                <a href="#certificates" className="block text-gray-300 hover:text-purple-400 transition-colors text-sm">Certificates</a>
+                <a href="#contact" className="block text-gray-300 hover:text-purple-400 transition-colors text-sm">Contact</a>
+              </div>
+            </div>
+
+            {/* Contact Info */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-white">Get In Touch</h3>
+              <div className="space-y-3">
+                <div className="flex items-center text-gray-300 text-sm">
+                  <MapPin className="h-4 w-4 mr-2 text-purple-400" />
+                  Lagos State, Nigeria
+                </div>
+                <div className="flex items-center text-gray-300 text-sm">
+                  <Mail className="h-4 w-4 mr-2 text-purple-400" />
+                  mediapowers13@gmail.com
+                </div>
+                <div className="flex items-center text-gray-300 text-sm">
+                  <GraduationCap className="h-4 w-4 mr-2 text-purple-400" />
+                  Federal University of Ilorin
+                </div>
+              </div>
+              <div className="pt-2">
+                <p className="text-xs text-gray-400">
+                  Available for freelance projects and full-time opportunities
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Section */}
+          <div className="border-t border-gray-700 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+              <div className="text-gray-400 text-sm">
+                © 2025 Mohammed Nurudeen Bolarinwa. All rights reserved.
+              </div>
+              <div className="flex items-center space-x-6 text-sm text-gray-400">
+                <span>Built with Next.js & Tailwind CSS</span>
+                <span className="hidden sm:inline">•</span>
+                <span className="hidden sm:inline">Deployed on Vercel</span>
+              </div>
             </div>
           </div>
         </div>
