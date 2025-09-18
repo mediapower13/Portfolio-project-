@@ -374,6 +374,23 @@ export default function Portfolio() {
                 Download Resume
               </Button>
             </div>
+            
+            {/* Work Availability Badges */}
+            <div className="flex flex-wrap justify-center gap-3 mt-8 animate-fade-in-up animation-delay-300">
+              <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover-lift">
+                🌍 Remote Worldwide
+              </div>
+              <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover-lift">
+                🏢 Hybrid Ready
+              </div>
+              <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover-lift">
+                💼 Full-time
+              </div>
+              <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover-lift">
+                ✈️ Open to Relocation
+              </div>
+            </div>
+            
             <div className="flex justify-center space-x-4 lg:space-x-6 animate-slide-up stagger-6">
               <Button
                 variant="ghost"
@@ -750,7 +767,7 @@ export default function Portfolio() {
                     </div>
                   </div>
                   <p className="text-gray-700">Lagos State, Nigeria</p>
-                  <p className="text-sm text-gray-600 mt-1">Available for remote work worldwide</p>
+                  <p className="text-sm text-gray-600 mt-1">Available for remote work worldwide • Hybrid • Full-time • Open to relocation</p>
                 </CardContent>
               </Card>
 
@@ -918,8 +935,8 @@ export default function Portfolio() {
                       <ExternalLink className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-800">Remote Ready</p>
-                      <p className="text-sm text-gray-600">Available for projects worldwide</p>
+                      <p className="font-semibold text-gray-800">Work Flexible</p>
+                      <p className="text-sm text-gray-600">Remote • Hybrid • Full-time • Open to relocation</p>
                     </div>
                   </div>
                   <div className="flex items-center">
@@ -1001,7 +1018,7 @@ export default function Portfolio() {
               </div>
               <div className="pt-2">
                 <p className="text-xs text-gray-400">
-                  Available for freelance projects and full-time opportunities
+                  Available for remote work worldwide • Hybrid arrangements • Full-time positions • Open to relocation
                 </p>
               </div>
             </div>
