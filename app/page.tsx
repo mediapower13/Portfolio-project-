@@ -3,7 +3,16 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
-import { Github, Mail, ExternalLink, Download, Menu, X, MapPin, GraduationCap, Code, Palette, Zap, Award, Eye } from "lucide-react"
+import { Github, Mail, ExternalLink, Download, Menu, X, MapPin, GraduationCa  const certificates = [
+    {
+      title: "Huawei Certified Datacom Associate",
+      issuer: "Huawei Technologies",
+      date: "2024",
+      description: "Certified Huawei Datacom Engineer with expertise in network fundamentals, routing, switching, and enterprise network solutions.",
+      image: "/images/certificates/huawei-datacom-certificate.jpg",
+      gradient: "from-red-400 to-orange-500",
+      pdfFile: "/my huawei certificate.pdf"
+    },lette, Zap, Award, Eye } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -174,6 +183,7 @@ export default function Portfolio() {
       verificationUrl: "#",
       skills: ["Network Engineering", "Routing & Switching", "Enterprise Networks", "Datacom"],
       gradient: "from-red-500 to-orange-500",
+      pdfFile: "/my huawei certificate.pdf"
     },
     {
       title: "JavaScript Practicals Crash Course",
@@ -248,7 +258,7 @@ export default function Portfolio() {
                 Contact
               </a>
               <button 
-                onClick={() => window.open('/My Resume Cv.pdf', '_blank')}
+                onClick={() => window.open('/MNB Resume.pdf', '_blank')}
                 className="text-purple-600 hover:text-purple-800 transition-colors font-medium hover-smooth hover-bounce stagger-5 border border-purple-200 px-3 py-1 rounded-md hover:bg-purple-50"
               >
                 Resume
@@ -302,7 +312,7 @@ export default function Portfolio() {
                 </a>
                 <button
                   onClick={() => {
-                    window.open('/My Resume Cv.pdf', '_blank');
+                    window.open('/MNB Resume.pdf', '_blank');
                     setIsMenuOpen(false);
                   }}
                   className="text-left text-purple-600 hover:text-purple-800 transition-colors font-medium border border-purple-200 px-3 py-2 rounded-md hover:bg-purple-50"
@@ -364,7 +374,7 @@ export default function Portfolio() {
                 variant="outline"
                 size="lg"
                 className="w-full sm:w-auto border-2 border-purple-200 hover:bg-purple-50 shadow-lg text-sm lg:text-base hover-smooth hover-bounce"
-                onClick={() => window.open('/My Resume Cv.pdf', '_blank')}
+                onClick={() => window.open('/MNB Resume.pdf', '_blank')}
               >
                 <Download className="mr-2 h-4 w-4" />
                 Download Resume
@@ -627,11 +637,16 @@ export default function Portfolio() {
                         variant="ghost" 
                         size="icon" 
                         className="h-8 w-8 hover:bg-blue-100 group-hover:scale-110 transition-all hover-glow" 
-                        asChild
+                        onClick={() => {
+                          if (certificate.pdfFile) {
+                            window.open(certificate.pdfFile, '_blank');
+                          } else {
+                            window.open(certificate.image, '_blank');
+                          }
+                        }}
+                        title="View certificate PDF"
                       >
-                        <a href={certificate.image} target="_blank" rel="noopener noreferrer" title="Download certificate">
-                          <Download className="h-4 w-4 text-blue-600" />
-                        </a>
+                        <Download className="h-4 w-4 text-blue-600" />
                       </Button>
                     </div>
                   </div>
