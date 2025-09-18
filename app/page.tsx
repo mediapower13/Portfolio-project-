@@ -170,44 +170,44 @@ export default function Portfolio() {
       issuer: "Huawei Technologies",
       date: "February 2025",
       description: "Certified Huawei Datacom Engineer with expertise in network fundamentals, routing, switching, and enterprise network solutions.",
-      image: "/images/certificates/huawei-datacom-certificate.jpg",
+      image: "/images/certificates/Huawei certificate.png",
       verificationUrl: "#",
       skills: ["Network Engineering", "Routing & Switching", "Enterprise Networks", "Datacom"],
       gradient: "from-red-500 to-orange-500",
-      pdfFile: "/my huawei certificate.pdf"
+      certificateImage: "/images/certificates/Huawei certificate.png"
     },
     {
       title: "JavaScript Practicals Crash Course",
       issuer: "Udemy - Proper Dot Institute",
       date: "November 2023",
       description: "Comprehensive hands-on JavaScript course covering practical programming concepts and real-world applications.",
-      image: "/images/certificates/javascript-crash-course.jpg",
+      image: "/images/certificates/cerificate udemy.jpg",
       verificationUrl: "#",
       skills: ["JavaScript", "DOM Manipulation", "ES6+", "Practical Programming"],
       gradient: "from-yellow-500 to-amber-500",
-      pdfFile: "/images/certificates/javascript-crash-course.jpg"
+      certificateImage: "/images/certificates/cerificate udemy.jpg"
     },
     {
       title: "Microsoft Excel - Basic/Advanced Formulas",
       issuer: "Udemy - Yassin Marco",
       date: "June 2024",
       description: "Advanced Excel skills including complex formulas, data analysis, and spreadsheet optimization techniques.",
-      image: "/images/certificates/microsoft-excel.jpg",
+      image: "/images/certificates/excel certificate udemy.jpg",
       verificationUrl: "#",
       skills: ["Excel", "Data Analysis", "Advanced Formulas", "Spreadsheet Management"],
       gradient: "from-green-500 to-teal-500",
-      pdfFile: "/images/certificates/microsoft-excel.jpg"
+      certificateImage: "/images/certificates/excel certificate udemy.jpg"
     },
     {
       title: "CSS, Bootstrap, JavaScript, PHP Full Stack",
       issuer: "Udemy - Proper Dot Institute",
       date: "June 2024",
-      description: "Comprehensive full-stack web development course covering modern frontend and backend technologies.",
-      image: "/images/certificates/fullstack-crash-course.jpg",
+      description: "Complete full-stack web development course covering frontend and backend technologies for modern web applications.",
+      image: "/images/certificates/udemy cert full-stack.jpg",
       verificationUrl: "#",
       skills: ["CSS", "Bootstrap", "JavaScript", "PHP", "Full Stack Development"],
       gradient: "from-blue-500 to-purple-500",
-      pdfFile: "/images/certificates/fullstack-crash-course.jpg"
+      certificateImage: "/images/certificates/udemy cert full-stack.jpg"
     }
   ]
 
@@ -346,7 +346,7 @@ export default function Portfolio() {
               </div>
               <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-3 lg:px-4 py-2 shadow-lg text-sm lg:text-base hover-lift hover-shine card-entrance">
                 <MapPin className="h-4 w-4 lg:h-5 lg:w-5 text-green-600 animate-pulse" />
-                <span className="font-medium">Kwara State, Nigeria</span>
+                <span className="font-medium">Lagos State, Nigeria</span>
               </div>
             </div>
             <p className="text-base lg:text-lg text-gray-600 mb-6 lg:mb-8 max-w-2xl mx-auto px-4 animate-slide-up stagger-4">
@@ -414,7 +414,7 @@ export default function Portfolio() {
             <div className="order-2 md:order-1 slide-left-on-scroll">
               <p className="text-lg text-gray-600 mb-6 leading-relaxed fade-up-on-scroll">
                 I'm Mohammed Nurudeen Bolarinwa, a dedicated Information Technology student at the Federal University of
-                Ilorin, Kwara State, with a passion for software development and Web3 technologies. I'm also a certified 
+                Ilorin, now based in Lagos State, with a passion for software development and Web3 technologies. I'm also a certified 
                 Datacom Engineer from Huawei, specializing in building modern web applications and blockchain solutions.
               </p>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed fade-up-on-scroll">
@@ -621,8 +621,8 @@ export default function Portfolio() {
                         variant="ghost" 
                         size="icon" 
                         className="h-8 w-8 hover:bg-purple-100 group-hover:scale-110 transition-all hover-glow" 
-                        onClick={() => window.open(certificate.image, '_blank')}
-                        title="View certificate image"
+                        onClick={() => window.open(certificate.certificateImage, '_blank')}
+                        title="View certificate"
                       >
                         <Eye className="h-4 w-4 text-purple-600" />
                       </Button>
@@ -630,14 +630,8 @@ export default function Portfolio() {
                         variant="ghost" 
                         size="icon" 
                         className="h-8 w-8 hover:bg-blue-100 group-hover:scale-110 transition-all hover-glow" 
-                        onClick={() => {
-                          if (certificate.pdfFile) {
-                            window.open(certificate.pdfFile, '_blank');
-                          } else {
-                            window.open(certificate.image, '_blank');
-                          }
-                        }}
-                        title="View certificate PDF"
+                        onClick={() => window.open(certificate.certificateImage, '_blank')}
+                        title="View certificate"
                       >
                         <Download className="h-4 w-4 text-blue-600" />
                       </Button>
