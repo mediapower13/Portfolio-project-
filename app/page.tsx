@@ -185,6 +185,7 @@ export default function Portfolio() {
       verificationUrl: "#",
       skills: ["JavaScript", "DOM Manipulation", "ES6+", "Practical Programming"],
       gradient: "from-yellow-500 to-amber-500",
+      pdfFile: "/images/certificates/javascript-crash-course.jpg"
     },
     {
       title: "Microsoft Excel - Basic/Advanced Formulas",
@@ -195,17 +196,19 @@ export default function Portfolio() {
       verificationUrl: "#",
       skills: ["Excel", "Data Analysis", "Advanced Formulas", "Spreadsheet Management"],
       gradient: "from-green-500 to-teal-500",
+      pdfFile: "/images/certificates/microsoft-excel.jpg"
     },
     {
       title: "CSS, Bootstrap, JavaScript, PHP Full Stack",
       issuer: "Udemy - Proper Dot Institute",
       date: "June 2024",
-      description: "Complete full-stack web development course covering frontend and backend technologies for modern web applications.",
+      description: "Comprehensive full-stack web development course covering modern frontend and backend technologies.",
       image: "/images/certificates/fullstack-crash-course.jpg",
       verificationUrl: "#",
       skills: ["CSS", "Bootstrap", "JavaScript", "PHP", "Full Stack Development"],
-      gradient: "from-purple-500 to-indigo-500",
-    },
+      gradient: "from-blue-500 to-purple-500",
+      pdfFile: "/images/certificates/fullstack-crash-course.jpg"
+    }
   ]
 
   const handleContactSubmit = (e: React.FormEvent) => {
@@ -618,11 +621,10 @@ export default function Portfolio() {
                         variant="ghost" 
                         size="icon" 
                         className="h-8 w-8 hover:bg-purple-100 group-hover:scale-110 transition-all hover-glow" 
-                        asChild
+                        onClick={() => window.open(certificate.image, '_blank')}
+                        title="View certificate image"
                       >
-                        <a href={certificate.verificationUrl} target="_blank" rel="noopener noreferrer" title="View certificate">
-                          <Eye className="h-4 w-4 text-purple-600" />
-                        </a>
+                        <Eye className="h-4 w-4 text-purple-600" />
                       </Button>
                       <Button 
                         variant="ghost" 
