@@ -3,16 +3,7 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
-import { Github, Mail, ExternalLink, Download, Menu, X, MapPin, GraduationCa  const certificates = [
-    {
-      title: "Huawei Certified Datacom Associate",
-      issuer: "Huawei Technologies",
-      date: "2024",
-      description: "Certified Huawei Datacom Engineer with expertise in network fundamentals, routing, switching, and enterprise network solutions.",
-      image: "/images/certificates/huawei-datacom-certificate.jpg",
-      gradient: "from-red-400 to-orange-500",
-      pdfFile: "/my huawei certificate.pdf"
-    },lette, Zap, Award, Eye } from "lucide-react"
+import { Github, Mail, ExternalLink, Download, Menu, X, MapPin, GraduationCap, Code, Palette, Zap, Award, Eye } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
